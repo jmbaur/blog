@@ -1,4 +1,5 @@
 .direnv
+result*
 /themes/*
 
 # Generated files by hugo

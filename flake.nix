@@ -19,7 +19,22 @@
         devShells.default = pkgs.mkShell {
           buildInputs = [ pkgs.hugo ];
           shellHook = ''
-            ln -sf ${xmin} ./themes/xmin
+            mkdir -p themes
+            ln -sf ${xmin} themes/xmin
+          '';
+        };
+        packages.default = pkgs.stdenvNoCC.mkDerivation {
+          name = "blog";
+          src = ./.;
+          buildInputs = [ pkgs.hugo ];
+          buildPhase = ''
+            ls -alh
+            mkdir -p themes
+            ln -sf ${xmin} themes/xmin
+            hugo
+          '';
+          installPhase = ''
+            cp -r public $out
           '';
         };
       });
