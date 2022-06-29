@@ -28,7 +28,6 @@
           src = ./.;
           buildInputs = [ pkgs.hugo ];
           buildPhase = ''
-            ls -alh
             mkdir -p themes
             ln -sf ${xmin} themes/xmin
             hugo
